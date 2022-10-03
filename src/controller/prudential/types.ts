@@ -2,6 +2,7 @@ import {
   Request as RequestExpress,
   Response as ResponseExpress,
 } from "express";
+import NodeRSA from "node-rsa";
 
 /**
  * Type for Class Prudential (Auto Service)
@@ -19,6 +20,20 @@ export interface PrudentialService {
    * @method
    */
   JWT(req: Request, res: Response): void;
+
+  /**
+   * Method for Generate Private Key RSA256
+   * @method
+   */
+
+  generatePrivateKey(key: string): string;
+
+  /**
+   * Instance for NodeRSA
+   * @instance
+   */
+
+  key: NodeRSA;
 }
 
 /**
