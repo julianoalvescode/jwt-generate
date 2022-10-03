@@ -28,13 +28,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var dotenv = __importStar(require("dotenv"));
-var jwt_1 = require("./services/jwt");
+var controller_1 = require("./controller");
 var logger_1 = __importDefault(require("./helpers/logger"));
 dotenv.config();
 var app = (0, express_1.default)();
-app.get("/jwt", function (_req, res) {
-    var token = (0, jwt_1.generateJWT)();
-    res.status(200).json({ token: token });
+app.use(express_1.default.json());
+app.get("/jwt", function (req, res) {
+    return controller_1.PrudentialController.JWT(req, res);
 });
 app.listen(3000, function () {
     logger_1.default.getDate();
